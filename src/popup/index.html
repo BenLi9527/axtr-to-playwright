@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AXTR → Playwright 转换器</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <main class="app">
+      <h1>AXTR → Playwright 转换器</h1>
+      <p class="subtitle">上传 D365 Task Recorder 的 .axtr 录制文件，自动生成 Playwright 测试脚本骨架。</p>
+
+      <div class="upload-row">
+        <input id="file-input" type="file" accept=".axtr,application/zip,application/octet-stream" />
+        <span id="file-name" class="file-name"></span>
+      </div>
+
+      <div id="status" class="status" role="status"></div>
+
+      <section id="result-section" class="result-section hidden">
+        <div class="result-actions">
+          <button id="copy-btn" type="button">复制到剪贴板</button>
+          <button id="download-btn" type="button">下载 .spec.ts 文件</button>
+        </div>
+        <textarea id="output" class="output" readonly spellcheck="false"></textarea>
+      </section>
+
+      <footer class="footer">
+        <details>
+          <summary>已知局限性</summary>
+          <ul>
+            <li>Task Recorder 没有公开的官方 Recording.xml XSD，本工具采用宽容解析，字段缺失时不会中断转换。</li>
+            <li>部分控件类型（自定义控件、第三方扩展等）可能解析不完整，请人工核对生成脚本。</li>
+            <li>Navigate/打开表单类步骤不会编造真实 URL，只会生成说明性注释，需要人工补充导航逻辑。</li>
+            <li>生成的选择器基于录制时的控件 Name/AutomationName/DisplayText，建议结合实际页面结构进行调整。</li>
+          </ul>
+        </details>
+      </footer>
+    </main>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

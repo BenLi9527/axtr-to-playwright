@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "AXTR → Playwright 转换器",
+  "version": "0.1.0",
+  "description": "将 Dynamics 365 F&O Task Recorder 的 .axtr 录制文件转换为 Playwright 测试脚本 (.spec.ts)",
+  "action": {
+    "default_popup": "src/popup/index.html",
+    "default_title": "AXTR → Playwright"
+  },
+  "icons": {
+    "16": "public/icons/icon16.png",
+    "48": "public/icons/icon48.png",
+    "128": "public/icons/icon128.png"
+  },
+  "permissions": [],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
